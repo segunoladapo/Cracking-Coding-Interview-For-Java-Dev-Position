@@ -13,8 +13,6 @@ public class Trie {
     class Node {
         private final Map<Character, Node> children = new HashMap<>();
         private Boolean word = false;
-        private boolean Visited = false;
-        public Character c;
 
         public boolean isWord() {
             return word;
@@ -28,13 +26,6 @@ public class Trie {
             return children;
         }
 
-        public boolean isVisited() {
-            return Visited;
-        }
-
-        public void setVisited(boolean visited) {
-            Visited = visited;
-        }
     }
 
     public Trie() {
@@ -48,7 +39,6 @@ public class Trie {
             final char letter = word.charAt(i);
             Function function = k -> {
                 Node n = new Node();
-                n.c = letter;
                 return n;
             };
 
@@ -109,42 +99,11 @@ public class Trie {
         return false;
     }
 
-    public static void printTrie(Node node) {
-
-        if (node == null || node.isVisited())
-            return;
-
-        LinkedList<Node> q = new LinkedList<Node>();
-
-        System.out.println(node);
-        node.setVisited(true);
-        q.add(node);
-
-        while (!q.isEmpty()) {
-            Node x = q.removeFirst();
-            for (Map.Entry<Character, Node> i : x.getChildren().entrySet()) {
-                if (i.getValue().isVisited() == false) {
-                    System.out.println(i);
-                    i.getValue().setVisited(true);
-                    q.add(i.getValue());
-                }
-            }
-        }
+    public void print() {
+        print(root, 0, new StringBuilder(""));
     }
 
-    public static void printTrie(Node node, int offset) {
-        // here you can play with the order of the children
-        String tabs = "";
-        int numTabs = offset;
-        for (int i = 0; i < numTabs; i++)
-            tabs += "\t";
-        for (Map.Entry<Character, Node> child : node.getChildren().entrySet()) {
-            System.out.println(tabs + "" + child.getKey());
-            printTrie(child.getValue(), offset + 2);
-        }
-    }
-
-    public static void print(Node rootNode, int level, StringBuilder sequence) {
+    private void print(Node rootNode, int level, StringBuilder sequence) {
         Map<Character, Node> children = rootNode.getChildren();
         Iterator<Character> iterator = children.keySet().iterator();
         while (iterator.hasNext()) {
@@ -170,6 +129,6 @@ public class Trie {
         //   System.out.println("Hell is not prefix in trie: " + trie.isPrefix("Hell"));
         //  trie.delete("Hell");
         //  System.out.println("Hell is not in trie: " + trie.contains("Hell"));
-        Trie.print(trie.root, 0, new StringBuilder(""));
+        trie.print();
     }
 }
