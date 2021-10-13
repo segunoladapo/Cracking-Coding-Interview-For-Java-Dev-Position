@@ -12,6 +12,6 @@ public class Fibonacci {
 
     public static void main(String... args) {
         Fibonacci fibonacci = new Fibonacci();
-        System.out.println("Fibonacci of 8th: " + fibonacci.nth(8));
+        System.out.println("Fibonacci of 8th: " + fibonacci.nth(32));
     }
 }
