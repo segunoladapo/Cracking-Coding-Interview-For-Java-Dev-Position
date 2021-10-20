@@ -24,7 +24,7 @@ public class BiggestColorSpot {
         if (i >= grid.length || i < 0 || j >= grid[0].length || j < 0 || grid[i][j] != color) {
             return 0;
         }
-        //Mark as visited
+        //Mark as visited by flipping to negative
         grid[i][j] = -grid[i][j];
         //Explore neighbours cells for same color
         int size = computeColorSpot(grid, i + 1, j, color) + computeColorSpot(grid, i - 1, j, color) +
@@ -59,5 +59,11 @@ public class BiggestColorSpot {
         BiggestColorSpot spots = new BiggestColorSpot();
 
         System.out.println("Biggest Color Spot: " + spots.determineBiggestColorSpot(a));
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(a[i][j] + "  ");
+            }
+            System.out.println();
+        }
     }
 }
