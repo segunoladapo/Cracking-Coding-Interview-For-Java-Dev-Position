@@ -34,6 +34,7 @@ public class BiggestColorSpot {
 
     public static void main(String... args) {
         int cols = 5;
+
         int rows = 5;
         int colors = 3; // a spot can have the colors 1, 2 or 3
 
